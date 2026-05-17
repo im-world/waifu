@@ -439,7 +439,7 @@ class FetchDataAgent:
 if __name__ == "__main__":
     import os, sys
 
-    print("=== WAIF Fetch-Data Agent (Gemini + Google Search) ===\n")
+    print("=== WAIFU Fetch-Data Agent (Gemini + Google Search) ===\n")
     api_key = os.getenv("GEMINI_API_KEY") or input("Gemini API key: ").strip()
     query = input("Stock / Instrument (e.g. 'Reliance', 'Apple', 'Nifty'): ").strip()
     from_date = input("From date (DD-MM-YYYY or YYYY-MM-DD)              : ").strip()

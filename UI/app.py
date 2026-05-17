@@ -26,21 +26,61 @@ if "ai_pending_date" not in st.session_state:
 # ── Header ────────────────────────────────────────────────────────────────────
 st.markdown(
     """
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;800&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
     <div style="
-        background: linear-gradient(90deg, #1e1e2e 0%, #313244 100%);
-        padding: 1rem 2rem;
-        border-bottom: 2px solid #89b4fa;
+        background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(168, 85, 247, 0.05) 100%);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(99, 102, 241, 0.15);
+        border-radius: 1.25rem;
+        padding: 1.25rem 2.25rem;
         display: flex;
         align-items: center;
-        gap: 1rem;
-        margin: -1rem -1rem 2rem -1rem;
+        gap: 1.5rem;
+        margin: -1rem 0rem 2rem 0rem;
+        box-shadow: 0 10px 30px -10px rgba(99, 102, 241, 0.15);
     ">
-        <span style="font-size: 1.8rem;">🤖</span>
+        <div style="
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            width: 3.25rem;
+            height: 3.25rem;
+            border-radius: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 8px 20px -6px rgba(99, 102, 241, 0.4);
+            animation: pulse 2s infinite ease-in-out;
+        ">🤖</div>
         <div>
-            <h1 style="margin: 0; color: #cdd6f4; font-size: 1.5rem; font-weight: 700;">WAIF Dashboard</h1>
-            <p style="margin: 0; color: #6c7086; font-size: 0.85rem;">Workflow AI Framework</p>
+            <h1 style="
+                margin: 0;
+                background: linear-gradient(90deg, #4f46e5 0%, #9333ea 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                font-family: 'Outfit', sans-serif;
+                font-size: 1.75rem;
+                font-weight: 800;
+                letter-spacing: -0.5px;
+                line-height: 1.2;
+            ">WAIFU</h1>
+            <p style="
+                margin: 0.15rem 0 0 0;
+                color: #64748b;
+                font-family: 'Plus Jakarta Sans', sans-serif;
+                font-size: 0.85rem;
+                font-weight: 700;
+                letter-spacing: 0.3px;
+            ">Web-grounded AI Financial Indexing Utility</p>
         </div>
     </div>
+    <style>
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.04); box-shadow: 0 8px 24px -4px rgba(99, 102, 241, 0.6); }
+        100% { transform: scale(1); }
+    }
+    </style>
     """,
     unsafe_allow_html=True,
 )
@@ -50,7 +90,7 @@ with st.sidebar:
     st.markdown("## Navigation")
     page = st.radio(
         label="Page",
-        options=["Overview", "AI Fetch", "Screener", "Section 2", "Settings"],
+        options=["Overview", "AI Fetch", "Screener", "Portfolio Builder", "Settings"],
         label_visibility="collapsed",
     )
 
@@ -121,7 +161,7 @@ if page == "Overview":
         st.metric("Errors", "0", delta=None)
 
     st.divider()
-    st.info("Welcome to the WAIF dashboard. Use the sidebar to navigate.")
+    st.info("Welcome to the WAIFU dashboard. Use the sidebar to navigate.")
 
 # ─────────────────────────────────────────────────────────────────────────────
 elif page == "AI Fetch":
@@ -468,13 +508,13 @@ Full reference: [screener.in query docs](https://www.screener.in/screen/raw/)
                     st.dataframe(df_industry, use_container_width=True)
 
 # ─────────────────────────────────────────────────────────────────────────────
-elif page == "Section 2":
+elif page == "Portfolio Builder":
     st.subheader("Portfolio Builder")
 
     datasets = st.session_state.get("datasets", {})
 
     if not datasets:
-        st.info("No data fetched yet. Go to **Section 1** to fetch instrument data first.")
+        st.info("No data fetched yet. Go to **AI Fetch** or **Screener** to fetch instrument data first.")
     else:
         st.markdown("### Instruments")
         st.caption(
@@ -712,7 +752,7 @@ elif page == "Section 2":
 # ─────────────────────────────────────────────────────────────────────────────
 elif page == "Settings":
     st.subheader("Settings")
-    st.text_input("App Name", value="WAIF Dashboard")
+    st.text_input("App Name", value="WAIFU Dashboard")
     st.toggle("Dark mode", value=True)
     st.slider("Log level", 0, 5, 2)
     if st.button("Save Settings"):
